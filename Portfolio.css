@@ -1294,4 +1294,143 @@ body{
 @media (min-width: 640px) { .skills-section .skill img { width: 32px; height: 32px; flex-basis: 32px; } .skills-section .skill span { font-size: 14px; } }
 .skills-section .skill:hover { transform: translateY(-2px) scale(1.03); border-color: #6b21a8; box-shadow: 0 8px 24px rgba(130, 69, 236, 0.25); }
 
+/* Interactive 3D experience */
+body{
+  position: relative;
+  overflow-x: hidden;
+  perspective: 1400px;
+  background:
+    radial-gradient(circle at var(--spot-x, 50%) var(--spot-y, 20%), rgba(130,69,236,.13), transparent 28rem),
+    var(--bg);
+}
+
+.ambient-3d{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.space-grid{
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -25vh;
+  height: 75vh;
+  opacity: .18;
+  background-image: linear-gradient(rgba(130,69,236,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,.42) 1px, transparent 1px);
+  background-size: 72px 72px;
+  transform: perspective(520px) rotateX(64deg) translateZ(-80px);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(to top, #000 15%, transparent 82%);
+}
+
+.orb{
+  position: absolute;
+  width: 24rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: .18;
+  background: radial-gradient(circle at 32% 28%, #fff, #a855f7 18%, #5224b8 50%, transparent 70%);
+  animation: orbFloat 13s ease-in-out infinite alternate;
+}
+.orb-one{ top: 5%; right: -8rem; }
+.orb-two{ width: 17rem; top: 45%; left: -6rem; animation-delay: -5s; animation-duration: 16s; }
+.orb-three{ width: 12rem; right: 12%; bottom: 3%; animation-delay: -9s; animation-duration: 11s; }
+
+.header{
+  background: rgba(8,18,31,.72);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 12px 35px rgba(0,0,0,.2);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.home{
+  position: relative;
+  isolation: isolate;
+  background-position: center;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+.home::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background: linear-gradient(90deg, rgba(8,18,31,.96) 8%, rgba(8,18,31,.72) 48%, rgba(8,18,31,.12) 100%);
+}
+.home::after{
+  content:"";
+  position:absolute;
+  width:34rem;
+  height:34rem;
+  right:5%;
+  top:50%;
+  z-index:-1;
+  border:1px solid rgba(255,255,255,.17);
+  border-radius:50%;
+  box-shadow: 0 0 0 28px rgba(130,69,236,.06), 0 0 100px rgba(130,69,236,.24), inset 0 0 80px rgba(34,211,238,.08);
+  transform: translateY(-50%) rotateX(var(--hero-rx, 0deg)) rotateY(var(--hero-ry, 0deg));
+  transition: transform .18s ease-out;
+}
+.home-content{ transform: translateZ(70px); text-shadow: 0 8px 30px rgba(0,0,0,.45); }
+.home-sci{ transform: translateZ(45px); }
+
+.about-img{ perspective:1000px; }
+.about-img img{
+  transform: rotateY(-7deg) rotateX(3deg) translateZ(20px);
+  box-shadow: -20px 24px 55px rgba(0,0,0,.48), 0 0 0 8px rgba(130,69,236,.08), 0 0 45px rgba(130,69,236,.34);
+  transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
+}
+.about-img:hover img{ transform: rotateY(5deg) rotateX(-2deg) translateZ(55px) scale(1.035); box-shadow: 18px 28px 65px rgba(0,0,0,.5), 0 0 55px rgba(34,211,238,.3); }
+
+.category-card,.exp-card,.proj-card,.testimonial-card,.contact-card{
+  --rx: 0deg;
+  --ry: 0deg;
+  --lift: 0px;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--lift));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .18s ease-out, box-shadow .25s ease, border-color .25s ease;
+}
+.category-card:hover,.exp-card:hover,.proj-card:hover,.contact-card:hover{
+  --lift: 18px;
+  box-shadow: 0 28px 60px rgba(0,0,0,.36), 0 0 32px rgba(130,69,236,.16);
+}
+.category-card > *,.exp-card > *,.proj-card > *,.contact-card > *{ transform: translateZ(22px); }
+.proj-thumb{ transform: translateZ(34px); overflow:hidden; }
+.proj-thumb img{ transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .4s ease; }
+.proj-card:hover .proj-thumb img{ transform: scale(1.07); }
+.skill{ transform-style:preserve-3d; }
+.skill:hover{ transform: translateY(-6px) translateZ(22px) scale(1.04); }
+
+.reveal-3d{
+  opacity:0;
+  transform: perspective(1000px) translateY(54px) rotateX(7deg) scale(.98);
+  transition: opacity .75s ease, transform .85s cubic-bezier(.2,.75,.2,1);
+}
+.reveal-3d.is-visible{ opacity:1; transform: perspective(1000px) translateY(0) rotateX(0) scale(1); }
+
+@keyframes orbFloat{
+  from{ transform: translate3d(-18px,-12px,0) scale(.92); }
+  to{ transform: translate3d(42px,35px,80px) scale(1.12); }
+}
+
+@media (max-width: 768px){
+  .home::after{ width:20rem; height:20rem; right:-9rem; opacity:.5; }
+  .home-content{ transform:none; }
+  .space-grid{ background-size:42px 42px; }
+  .category-card,.exp-card,.proj-card,.testimonial-card,.contact-card{ transform:none !important; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .orb{ animation:none; }
+  .reveal-3d{ opacity:1; transform:none; transition:none; }
+  .category-card,.exp-card,.proj-card,.testimonial-card,.contact-card,.home::after{ transform:none !important; transition:none; }
+}
+
 

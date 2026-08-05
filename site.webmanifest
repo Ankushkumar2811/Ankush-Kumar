@@ -8,9 +8,9 @@
   "theme_color": "#8245ec",
   "icons": [
     {
-      "src": "Ankush Profile.jpg",
-      "sizes": "1920x1080",
-      "type": "image/jpeg",
+      "src": "ankush.png",
+      "sizes": "any",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

@@ -143,4 +143,50 @@ window.addEventListener('DOMContentLoaded', function () {
   if (testimonialsTrack) {
     testimonialsTrack.innerHTML += testimonialsTrack.innerHTML;
   }
+
+  // Interactive 3D depth: pointer spotlight, hero parallax and card tilt.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    document.addEventListener('pointermove', function (e) {
+      document.body.style.setProperty('--spot-x', (e.clientX / window.innerWidth * 100).toFixed(1) + '%');
+      document.body.style.setProperty('--spot-y', (e.clientY / window.innerHeight * 100).toFixed(1) + '%');
+      var hero = document.querySelector('.home');
+      if (hero && window.scrollY < window.innerHeight) {
+        hero.style.setProperty('--hero-ry', ((e.clientX / window.innerWidth - .5) * 9).toFixed(2) + 'deg');
+        hero.style.setProperty('--hero-rx', ((.5 - e.clientY / window.innerHeight) * 7).toFixed(2) + 'deg');
+      }
+    }, { passive: true });
+
+    var tiltCards = document.querySelectorAll('.category-card, .exp-card, .proj-card, .contact-card');
+    tiltCards.forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        if (window.innerWidth <= 768) return;
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - .5;
+        var y = (e.clientY - rect.top) / rect.height - .5;
+        card.style.setProperty('--ry', (x * 9).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', (-y * 7).toFixed(2) + 'deg');
+      });
+      card.addEventListener('pointerleave', function () {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+      });
+    });
+  }
+
+  var revealSections = document.querySelectorAll('section:not(.home)');
+  revealSections.forEach(function (section) { section.classList.add('reveal-3d'); });
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .08, rootMargin: '0px 0px -6% 0px' });
+    revealSections.forEach(function (section) { revealObserver.observe(section); });
+  } else {
+    revealSections.forEach(function (section) { section.classList.add('is-visible'); });
+  }
 });
