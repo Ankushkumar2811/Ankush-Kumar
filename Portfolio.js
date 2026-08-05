@@ -9,11 +9,11 @@ var roles = [
   'Web App Developer'
 ];
 
-function startTyped(selector){
+function startTyped(selector, strings){
   var el = document.querySelector(selector);
   if (!el || !window.Typed) return;
   new Typed(selector, {
-    strings: roles,
+    strings: strings || roles,
     typeSpeed: 150,
     backSpeed: 150,
     backDelay: 1000,
@@ -33,6 +33,16 @@ window.addEventListener('DOMContentLoaded', function () {
     }
     // Fallback in case animationend doesn't fire (e.g., styles change)
     setTimeout(beginHero, 1600);
+  }
+
+  var impactSpan = document.querySelector('.impact-text');
+  if (impactSpan) {
+    startTyped('.impact-text', [
+      'I Build Web Apps That Drive Results.',
+      'I Create Scalable MERN Solutions.',
+      'I Develop High-Performance Websites.',
+      'I Turn Ideas Into Digital Products.'
+    ]);
   }
 
   // ABOUT: start when the span scrolls into view
