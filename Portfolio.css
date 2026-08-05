@@ -1540,6 +1540,8 @@ body{
 
 /* Reliable hero hit targets: decorative 3D layers never capture clicks */
 .home-content{ transform:none !important; position:relative; z-index:40; }
+.home{ transform-style:flat !important; perspective:none !important; }
+.hero-main,.hero-visual{ transform:none !important; transform-style:flat !important; perspective:none !important; }
 .hero-actions,.home .home-sci{ position:relative; z-index:50; isolation:isolate; }
 .hero-btn,.home .home-sci a,.tech-float{
   position:relative;
@@ -1548,8 +1550,14 @@ body{
   touch-action:manipulation;
 }
 .home .home-sci a{ opacity:1 !important; transform:none !important; }
+.hero-btn:hover,.home .home-sci a:hover{ transform:none !important; }
+.hero-portrait{ transform:scale(1.04) !important; }
+.tech-float{ transform:none !important; animation:badgeFloat2D 4s ease-in-out infinite alternate !important; }
+.tech-float:hover{ transform:translateY(-3px) !important; }
 .ambient-3d,.space-grid,.orb,.home::before,.home::after,.portrait-halo,.hero-orbit,.hero-portrait{
   pointer-events:none !important;
 }
+@keyframes badgeFloat2D{ from{ margin-top:-4px; } to{ margin-top:5px; } }
+@media(max-width:700px){.hero-portrait{transform:scale(1.02) !important}.tech-float{animation:none !important}.tech-float:hover{transform:none !important}}
 
 
