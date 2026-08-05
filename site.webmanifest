@@ -1,0 +1,17 @@
+{
+  "name": "Ankush Kumar — Full Stack Developer",
+  "short_name": "Ankush Kumar",
+  "description": "Portfolio of Ankush Kumar, a Full Stack Developer specializing in MERN, WordPress, Shopify, CRM and SaaS development.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#08121f",
+  "theme_color": "#8245ec",
+  "icons": [
+    {
+      "src": "Ankush Profile.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
