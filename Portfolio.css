@@ -1538,4 +1538,18 @@ body{
 @media(max-width:1050px){.about{grid-template-columns:1fr;padding-top:68px}.about-visual{min-height:550px}.about-text{text-align:center}.about-kicker{justify-content:center}.about-text p{margin-left:auto;margin-right:auto}.about-strengths{text-align:left}.about-download{margin:auto}}
 @media(max-width:700px){.about{padding:58px 5% 48px;gap:20px}.about-visual{min-height:380px}.about-orbit{display:none}.about-portrait{width:min(340px,88%);height:auto;max-height:340px;margin:0}.about-name-card{left:50%;bottom:-1%;transform:translateX(-50%);min-width:230px}.about-dots{display:none}.about-text h2{font-size:48px}.about-strengths{grid-template-columns:repeat(2,1fr)}.about-strengths article{min-height:142px}}
 
+/* Reliable hero hit targets: decorative 3D layers never capture clicks */
+.home-content{ transform:none !important; position:relative; z-index:40; }
+.hero-actions,.home .home-sci{ position:relative; z-index:50; isolation:isolate; }
+.hero-btn,.home .home-sci a,.tech-float{
+  position:relative;
+  z-index:60;
+  pointer-events:auto !important;
+  touch-action:manipulation;
+}
+.home .home-sci a{ opacity:1 !important; transform:none !important; }
+.ambient-3d,.space-grid,.orb,.home::before,.home::after,.portrait-halo,.hero-orbit,.hero-portrait{
+  pointer-events:none !important;
+}
+
 
