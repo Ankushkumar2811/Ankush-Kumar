@@ -1565,4 +1565,72 @@ body{
 }
 @media(max-width:700px){.hero-portrait{transform:scale(1.02) !important}.tech-float{animation:none !important}.tech-float:hover{transform:none !important}}
 
+/* Premium Skills & Technologies */
+.skills-section{
+  --skill-yellow:#ffcf00;
+  padding:72px 7% 58px !important;
+  position:relative;
+  overflow:hidden;
+  clip-path:none !important;
+  background-color:#030914 !important;
+  background-image:
+    radial-gradient(circle at 8% 10%,rgba(255,207,0,.08),transparent 18%),
+    radial-gradient(circle at 94% 22%,rgba(255,207,0,.13),transparent 20%),
+    linear-gradient(rgba(20,31,48,.14) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(20,31,48,.14) 1px,transparent 1px) !important;
+  background-size:auto,auto,42px 42px,42px 42px !important;
+}
+.skills-section::before,.skills-section::after{content:"";position:absolute;border:1px solid rgba(255,207,0,.17);border-radius:50%;pointer-events:none}
+.skills-section::before{width:360px;height:360px;left:-175px;top:-120px}.skills-section::after{width:430px;height:430px;right:-215px;top:90px;box-shadow:0 0 55px rgba(255,207,0,.09)}
+.skills-section .section-header{position:relative;z-index:2;margin:0 auto 30px;max-width:760px;text-align:center}
+.skills-kicker{display:flex;align-items:center;justify-content:center;gap:14px;color:#fff1a5;text-transform:uppercase;letter-spacing:5px;font-size:12px;font-weight:700}
+.skills-kicker span{width:7px;height:7px;border-radius:50%;background:var(--skill-yellow);box-shadow:0 0 13px var(--skill-yellow)}
+.skills-section .section-header h2{margin:12px 0 12px;font-size:clamp(42px,5vw,64px);line-height:1;color:#fff;font-weight:800;letter-spacing:-2px}
+.skills-section .section-header h2 span{color:var(--skill-yellow)}
+.skills-section .section-header p{max-width:620px;margin:0 auto;color:#bac1cc;font-size:15px;line-height:1.65;font-weight:400}
+.skills-section .skills-categories{position:relative;z-index:2;display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px !important;padding:0 !important;max-width:1320px;margin:0 auto}
+.skills-section .category-card{
+  width:100% !important;
+  margin:0 !important;
+  padding:20px 22px 18px !important;
+  border:1px solid rgba(255,207,0,.68) !important;
+  border-radius:16px !important;
+  background:linear-gradient(145deg,rgba(9,16,29,.97),rgba(4,10,21,.96)) !important;
+  box-shadow:0 12px 30px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.025) !important;
+  transform:none !important;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease !important;
+}
+.skills-section .category-card:hover{transform:translateY(-5px) !important;border-color:var(--skill-yellow) !important;box-shadow:0 18px 38px rgba(0,0,0,.38),0 0 22px rgba(255,207,0,.09) !important}
+.category-heading{min-height:92px;display:grid;grid-template-columns:76px 1fr auto;gap:15px;align-items:center;margin-bottom:14px;position:relative}
+.category-icon{width:70px;height:70px;border:1px solid var(--skill-yellow);border-radius:50%;display:grid;place-items:center;color:var(--skill-yellow);font-size:37px;box-shadow:0 0 20px rgba(255,207,0,.13)}
+.skills-section .category-heading h3{margin:0 0 6px !important;color:var(--skill-yellow) !important;text-align:left !important;font-size:21px !important;font-weight:700 !important}
+.skills-section .category-heading p{margin:0;color:#b8c0cc;font-size:12px;line-height:1.55;max-width:390px}
+.category-number{align-self:start;color:rgba(255,207,0,.1);font-size:48px;line-height:1;font-weight:800}
+.skills-section .skills-grid{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:9px !important}
+.skills-section .skill{
+  min-width:0;
+  min-height:53px;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  padding:9px 11px !important;
+  border:1px solid rgba(255,207,0,.14) !important;
+  border-radius:10px !important;
+  background:linear-gradient(145deg,rgba(20,27,40,.9),rgba(9,15,27,.92)) !important;
+  opacity:1 !important;
+  transform:none !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.03) !important;
+}
+.skills-section .skill:hover{transform:translateY(-3px) !important;border-color:rgba(255,207,0,.55) !important;box-shadow:0 8px 18px rgba(0,0,0,.3) !important}
+.skills-section .skill img{width:29px !important;height:29px !important;flex:0 0 29px !important;object-fit:contain;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3))}
+.skills-section .skill span{min-width:0;color:#f3f4f6 !important;font-size:11px !important;line-height:1.2 !important;white-space:normal !important;text-align:left !important;font-weight:500}
+.skills-motto{position:relative;z-index:2;max-width:700px;margin:28px auto 0;min-height:58px;padding:8px 20px 8px 10px;display:flex;align-items:center;gap:22px;border:1px solid rgba(255,207,0,.25);border-radius:999px;background:rgba(8,14,26,.9)}
+.skills-motto i{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;color:var(--skill-yellow);background:rgba(255,207,0,.12);font-size:21px;box-shadow:0 0 20px rgba(255,207,0,.18)}
+.skills-motto p{margin:0;color:#cbd1da;font-size:16px}.skills-motto strong{color:var(--skill-yellow)}
+@media(max-width:1050px){.skills-section .skills-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important}.category-heading{grid-template-columns:66px 1fr auto}.category-icon{width:60px;height:60px;font-size:31px}}
+@media(max-width:820px){.skills-section{padding:62px 5% 48px !important}.skills-section .skills-categories{grid-template-columns:1fr}.skills-section .skills-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important}}
+@media(max-width:560px){.skills-section .section-header h2{font-size:39px}.skills-kicker{letter-spacing:3px}.skills-section .category-card{padding:16px 14px !important}.category-heading{grid-template-columns:58px 1fr auto;gap:10px}.category-icon{width:52px;height:52px;font-size:27px}.category-number{font-size:34px}.skills-section .category-heading h3{font-size:18px !important}.skills-section .category-heading p{font-size:11px}.skills-section .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.skills-motto{border-radius:16px;gap:12px}.skills-motto p{font-size:13px}}
+
 

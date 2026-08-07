@@ -28,7 +28,7 @@
     <meta name="twitter:image" content="ankush.jpg">
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="stylesheet" href="Portfolio.css?v=20260805-15">
+    <link rel="stylesheet" href="Portfolio.css?v=20260807-16">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script defer src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <!-- Tailwind (Play CDN) with prefix and preflight disabled to avoid conflicts -->
@@ -163,15 +163,19 @@
     
     <!-- Services --><section id="skills" class="skills-section">
       <div class="section-header">
-        <h2>SKILLS</h2>
-        <div class="underline"></div>
+        <div class="skills-kicker"><span></span> My Expertise <span></span></div>
+        <h2>Skills &amp; <span>Technologies</span></h2>
         <p>A collection of my technical skills and expertise honed through various projects and experiences</p>
       </div>
 
       <div class="skills-categories">
         <!-- Frontend -->
         <div class="category-card">
-          <h3>Frontend</h3>
+          <div class="category-heading">
+            <div class="category-icon"><i class='bx bx-code-alt'></i></div>
+            <div><h3>Frontend</h3><p>Building responsive and interactive user interfaces with modern frontend technologies.</p></div>
+            <strong class="category-number">01</strong>
+          </div>
           <div class="skills-grid">
             <div class="skill"><img src="html.png" alt="HTML"><span>HTML</span></div>
             <div class="skill"><img src="css.png" alt="CSS"><span>CSS</span></div>
@@ -190,7 +194,11 @@
 
         <!-- Backend -->
         <div class="category-card">
-          <h3>Backend</h3>
+          <div class="category-heading">
+            <div class="category-icon"><i class='bx bx-server'></i></div>
+            <div><h3>Backend</h3><p>Developing robust and scalable server-side applications, APIs, and databases.</p></div>
+            <strong class="category-number">02</strong>
+          </div>
           <div class="skills-grid">
             <div class="skill"><img src="springboot.png" alt="Springboot"><span>Springboot</span></div>
             <div class="skill"><img src="nodejs.png" alt="Node JS"><span>Node JS</span></div>
@@ -204,7 +212,11 @@
 
         <!-- Languages -->
         <div class="category-card">
-          <h3>Languages</h3>
+          <div class="category-heading">
+            <div class="category-icon"><i class='bx bx-code-curly'></i></div>
+            <div><h3>Languages</h3><p>Programming languages I use to build powerful, reliable applications.</p></div>
+            <strong class="category-number">03</strong>
+          </div>
           <div class="skills-grid">
             <div class="skill"><img src="c.png" alt="C"><span>C</span></div>
             <div class="skill"><img src="cpp.png" alt="C++"><span>C++</span></div>
@@ -218,7 +230,11 @@
 
         <!-- Tools (only requested software) -->
         <div class="category-card">
-          <h3>Tools</h3>
+          <div class="category-heading">
+            <div class="category-icon"><i class='bx bx-wrench'></i></div>
+            <div><h3>Tools</h3><p>Essential tools and platforms that enhance my development workflow.</p></div>
+            <strong class="category-number">04</strong>
+          </div>
           <div class="skills-grid">
             <!-- Core developer tools -->
             <div class="skill"><img src="git.png" alt="Git"><span>Git</span></div>
@@ -239,6 +255,7 @@
           </div>
         </div>
       </div>
+      <div class="skills-motto"><i class='bx bxs-star'></i><p>Always <strong>learning</strong>, always <strong>building</strong>, always <strong>improving</strong>.</p></div>
     </section>
     <section id="experience" class="experience-cards">
         <div class="container">
