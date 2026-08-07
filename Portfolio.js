@@ -151,7 +151,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var testimonialsTrack = document.querySelector('.testimonials-track');
   if (testimonialsTrack) {
-    testimonialsTrack.innerHTML += testimonialsTrack.innerHTML;
+    var testimonialPrev = document.querySelector('.testimonial-arrow.prev');
+    var testimonialNext = document.querySelector('.testimonial-arrow.next');
+    var moveTestimonials = function(direction) {
+      var card = testimonialsTrack.querySelector('.testimonial-card');
+      if (!card) return;
+      var gap = parseFloat(getComputedStyle(testimonialsTrack).gap) || 14;
+      testimonialsTrack.scrollBy({ left: direction * (card.offsetWidth + gap), behavior: 'smooth' });
+    };
+    if (testimonialPrev) testimonialPrev.addEventListener('click', function(){ moveTestimonials(-1); });
+    if (testimonialNext) testimonialNext.addEventListener('click', function(){ moveTestimonials(1); });
   }
 
   // Interactive 3D depth: pointer spotlight, hero parallax and card tilt.
