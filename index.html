@@ -94,6 +94,7 @@
             <a href="#testimonials" style="--i:8">Testimonials</a>
             <a href="#contact" style="--i:9">Contact</a>
         </nav>
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"><i class='bx bx-menu'></i></button>
     </header>
     <section class="home" id="home">
         <div class="hero-main">
@@ -1224,48 +1225,43 @@
     </section>
 
     <section id="contact" class="section contact">
-        <div class="contact-card">
-            <div class="contact-content">
-                <p class="eyebrow">Reach Out</p>
-                <h1 class="sub-title">Get <span>In Touch</span></h1>
-                <p class="intro">Whether you need a WordPress revamp, Shopify acceleration, or a MERN/CRM system, I help teams ship secure, polished digital products on time.</p>
-                <div class="contact-highlights">
-                    <div class="highlight">
-                        <span class="label">Average TAT</span>
-                        <strong>48h</strong>
-                    </div>
-                    <div class="highlight">
-                        <span class="label">Response</span>
-                        <strong>Typically 2hrs</strong>
-                    </div>
-                    <div class="highlight">
-                        <span class="label">Trusted By</span>
-                        <strong>40+ brands</strong>
-                    </div>
-                </div>
-                <p class="note">Start with a short brief or dive straight into a discovery call—either way, you’ll get clear next steps within the day.</p>
+        <div class="contact-wrap">
+            <div class="contact-heading">
+                <span class="contact-kicker"><i class='bx bx-paper-plane'></i> Let's Connect</span>
+                <h1 class="sub-title">Get In <span>Touch</span></h1>
+                <p>Have a project in mind or want to work together?<br>Feel free to reach out — I'd love to hear from you!</p>
             </div>
-            <div class="contact-panel">
-                <p class="panel-title">Choose a channel</p>
-                <div class="panel-item">
-                    <span>Phone</span>
-                    <a href="tel:+919958052773">+91 99580 52773</a>
-                    <small>Available 8am–10pm IST · quick callback</small>
-                </div>
-                <div class="panel-item">
-                    <span>Email</span>
-                    <a href="mailto:ankushkumar2811@gmail.com">ankushkumar2811@gmail.com</a>
-                    <small>Typically replies within 2 hours</small>
-                </div>
-                <div class="panel-item">
-                    <span>WhatsApp</span>
-                    <a href="https://api.whatsapp.com/send?phone=919958052773" target="_blank" rel="noopener noreferrer">Chat & send files</a>
-                    <small>Just tap to start a live thread</small>
-                </div>
-                <div class="panel-buttons">
-                    <a class="panel-btn" href="mailto:ankushkumar2811@gmail.com">Drop a Brief</a>
-                    <a class="panel-btn ghost" href="https://calendly.com" target="_blank" rel="noopener noreferrer">Schedule a Call</a>
-                </div>
+            <div class="contact-grid">
+                <article class="contact-info-card">
+                    <div class="contact-card-title"><i class='bx bx-user'></i><div><h2>Let's Build Something <span>Amazing Together</span></h2><p>Share your idea, question or project brief. I'll get back to you as soon as possible.</p></div></div>
+                    <div class="contact-details">
+                        <a href="mailto:ankushkumar2811@gmail.com"><i class='bx bx-envelope'></i><span><small>Email</small><strong>ankushkumar2811@gmail.com</strong></span></a>
+                        <a href="tel:+919958052773"><i class='bx bx-phone'></i><span><small>Phone</small><strong>+91 99580 52773</strong></span></a>
+                        <div><i class='bx bx-map'></i><span><small>Location</small><strong>Noida, Uttar Pradesh, India</strong></span></div>
+                        <div><i class='bx bx-time-five'></i><span><small>Availability</small><strong>Mon–Sat · 10:00 AM–7:00 PM</strong></span></div>
+                    </div>
+                    <div class="contact-channels">
+                        <p>Let's Talk On</p>
+                        <a href="https://api.whatsapp.com/send?phone=919958052773" target="_blank" rel="noopener noreferrer"><i class='bx bxl-whatsapp'></i><span><strong>WhatsApp</strong><small>Chat Now</small></span><b>→</b></a>
+                        <a href="mailto:ankushkumar2811@gmail.com"><i class='bx bx-envelope'></i><span><strong>Email</strong><small>Send a Brief</small></span><b>→</b></a>
+                    </div>
+                </article>
+                <article class="contact-form-card">
+                    <div class="contact-card-title"><i class='bx bx-send'></i><div><h2>Send Me a Message</h2><p>I'll respond as soon as possible.</p></div></div>
+                    <form id="contact-form">
+                        <label><i class='bx bx-user'></i><input type="text" name="name" placeholder="Your Name" autocomplete="name" required></label>
+                        <label><i class='bx bx-envelope'></i><input type="email" name="email" placeholder="Your Email" autocomplete="email" required></label>
+                        <label class="subject"><i class='bx bx-file'></i><input type="text" name="subject" placeholder="Subject" required></label>
+                        <label class="message"><i class='bx bx-pencil'></i><textarea name="message" placeholder="Your Message" rows="6" required></textarea></label>
+                        <button type="submit"><i class='bx bx-send'></i> Send Message</button>
+                    </form>
+                    <div class="contact-promises"><span><i class='bx bx-shield-quarter'></i> Privacy Guaranteed</span><span><i class='bx bx-bolt-circle'></i> Quick Response</span><span><i class='bx bx-message-rounded-dots'></i> Project Discussion</span></div>
+                </article>
+            </div>
+            <div class="contact-bottom">
+                <div class="contact-idea"><i class='bx bxs-rocket'></i><span><strong>Let's turn your ideas into reality.</strong><small>I'm excited to help bring your vision to life.</small></span></div>
+                <div class="contact-social"><span><strong>Follow Me</strong><small>Stay connected on my social platforms</small></span><div><a href="https://www.linkedin.com/in/ankush-kumar2811/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a><a href="https://github.com/Ankushkumar2811" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class='bx bxl-github'></i></a><a href="https://www.instagram.com/ankush_kumar2811/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class='bx bxl-instagram'></i></a></div></div>
+                <a class="consultation-card" href="https://api.whatsapp.com/send?phone=919958052773" target="_blank" rel="noopener noreferrer"><i class='bx bx-calendar'></i><span><strong>Book a Free Consultation</strong><small>Let's discuss your project</small><b>Schedule Now →</b></span></a>
             </div>
         </div>
     </section>

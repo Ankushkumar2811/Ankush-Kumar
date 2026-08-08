@@ -22,6 +22,41 @@ function startTyped(selector, strings){
 }
 
 window.addEventListener('DOMContentLoaded', function () {
+  var menuToggle = document.querySelector('.menu-toggle');
+  var navbar = document.querySelector('.navbar');
+  if (menuToggle && navbar) {
+    var closeMenu = function () {
+      navbar.classList.remove('open');
+      document.body.classList.remove('body-menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      var icon = menuToggle.querySelector('i');
+      if (icon) icon.className = 'bx bx-menu';
+    };
+    menuToggle.addEventListener('click', function () {
+      var opening = !navbar.classList.contains('open');
+      navbar.classList.toggle('open', opening);
+      document.body.classList.toggle('body-menu-open', opening);
+      menuToggle.setAttribute('aria-expanded', String(opening));
+      menuToggle.setAttribute('aria-label', opening ? 'Close navigation menu' : 'Open navigation menu');
+      var icon = menuToggle.querySelector('i');
+      if (icon) icon.className = opening ? 'bx bx-x' : 'bx bx-menu';
+    });
+    navbar.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 900) closeMenu(); });
+  }
+
+  var contactForm = document.querySelector('#contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var data = new FormData(contactForm);
+      var subject = data.get('subject') || 'Portfolio project enquiry';
+      var body = 'Name: ' + (data.get('name') || '') + '\nEmail: ' + (data.get('email') || '') + '\n\n' + (data.get('message') || '');
+      window.location.href = 'mailto:ankushkumar2811@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+  }
+
   // HERO: start after the h3 (with span.text) finishes its CSS intro animation
   var heroSpan = document.querySelector('.text');
   if (heroSpan) {
