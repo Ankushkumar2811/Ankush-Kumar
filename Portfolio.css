@@ -1822,4 +1822,33 @@ img,video,canvas,svg{max-width:100%}body{overflow-x:hidden}.section{max-width:10
   .trusted-companies>div{grid-template-columns:1fr!important}.contact-promises{grid-template-columns:1fr!important}.contact-promises span{flex-direction:row;justify-content:flex-start!important}
 }
 
+/* Keep off-canvas navigation and decorative layers inside the mobile viewport. */
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+@supports (overflow:clip){
+  html,body{overflow-x:clip}
+}
+@media(max-width:900px){
+  .header,.navbar,main,section{
+    max-width:100%;
+  }
+  .navbar{
+    width:100%;
+    contain:paint;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .navbar.open{
+    visibility:visible;
+    pointer-events:auto;
+  }
+  .testimonials-viewport,.projects-showcase,.contact{
+    max-width:100%;
+    overflow-x:hidden;
+  }
+}
+
 
