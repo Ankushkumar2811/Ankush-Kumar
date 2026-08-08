@@ -65,12 +65,6 @@ $senderName = $env('SMTP_FROM_NAME', 'UnnatiX Technologies');
 $smtpSecurity = strtolower($env('SMTP_SECURITY', 'starttls'));
 $recipient = 'ak5974828@gmail.com';
 
-if ($smtpPassword === '') {
-    http_response_code(503);
-    echo json_encode(['ok' => false, 'message' => 'Email service is not configured yet. Please contact me directly by email or WhatsApp.']);
-    exit;
-}
-
 $mailSubject = 'Portfolio Enquiry: ' . $subject;
 $mailBody = "New enquiry from ankushkumar.in\n\n"
     . "Name: {$name}\n"
@@ -176,7 +170,19 @@ function smtp_send(
     return $accepted;
 }
 
-$sent = smtp_send($smtpHost, $smtpPort, $smtpSecurity, $smtpUser, $smtpPassword, $sender, $senderName, (string)$email, $name, $recipient, $mailSubject, $mailBody);
+$sent = false;
+if ($smtpPassword !== '') {
+    $sent = smtp_send($smtpHost, $smtpPort, $smtpSecurity, $smtpUser, $smtpPassword, $sender, $senderName, (string)$email, $name, $recipient, $mailSubject, $mailBody);
+} else {
+    // Hostinger fallback: keeps the form operational until the private SMTP config is installed.
+    $fallbackHeaders = [
+        'From: ' . $senderName . ' <' . $sender . '>',
+        'Reply-To: ' . $name . ' <' . (string)$email . '>',
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+    ];
+    $sent = mail($recipient, $mailSubject, $mailBody, implode("\r\n", $fallbackHeaders));
+}
 
 if (!$sent) {
     http_response_code(500);
