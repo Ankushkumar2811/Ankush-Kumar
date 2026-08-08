@@ -50,12 +50,43 @@ window.addEventListener('DOMContentLoaded', function () {
   if (contactForm) {
     contactForm.addEventListener('submit', function (event) {
       event.preventDefault();
+      var status = contactForm.querySelector('.form-status');
+      var invalid = contactForm.querySelectorAll(':invalid');
+      contactForm.querySelectorAll('label').forEach(function(label){ label.classList.remove('field-error'); });
+      if (invalid.length) {
+        invalid.forEach(function(field){ var label = field.closest('label'); if (label) label.classList.add('field-error'); });
+        if (status) status.textContent = 'Please complete all fields with valid information.';
+        invalid[0].focus();
+        return;
+      }
       var data = new FormData(contactForm);
       var subject = data.get('subject') || 'Portfolio project enquiry';
       var body = 'Name: ' + (data.get('name') || '') + '\nEmail: ' + (data.get('email') || '') + '\n\n' + (data.get('message') || '');
+      if (status) status.textContent = 'Opening your email app with the project details…';
       window.location.href = 'mailto:ankushkumar2811@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
+    contactForm.querySelectorAll('input, textarea').forEach(function(field){
+      field.addEventListener('input', function(){ var label = field.closest('label'); if (label) label.classList.remove('field-error'); });
+    });
   }
+
+  var year = document.querySelector('#current-year');
+  if (year) year.textContent = String(new Date().getFullYear());
+  var backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    var syncBackToTop = function(){ backToTop.classList.toggle('visible', window.scrollY > 650); };
+    window.addEventListener('scroll', syncBackToTop, { passive: true });
+    syncBackToTop();
+    backToTop.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  var faqItems = document.querySelectorAll('.faq-list details');
+  faqItems.forEach(function(item){
+    item.addEventListener('toggle', function(){
+      if (!item.open) return;
+      faqItems.forEach(function(other){ if (other !== item) other.open = false; });
+    });
+  });
 
   // HERO: start after the h3 (with span.text) finishes its CSS intro animation
   var heroSpan = document.querySelector('.text');

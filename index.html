@@ -10,6 +10,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#08121f">
     <meta name="color-scheme" content="dark">
+    <link rel="canonical" href="https://ankushkumar.in/">
 
     <link rel="icon" href="ankush.png?v=2" type="image/png">
     <link rel="manifest" href="site.webmanifest">
@@ -22,20 +23,16 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Ankush Kumar — Full Stack Developer">
+    <meta property="og:url" content="https://ankushkumar.in/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ankush Kumar | Full Stack Developer">
     <meta name="twitter:description" content="MERN, React, Node.js, WordPress and Shopify developer building scalable web apps, CRM systems and SaaS dashboards.">
     <meta name="twitter:image" content="ankush.jpg">
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="stylesheet" href="Portfolio.css?v=20260808-2">
+    <link rel="stylesheet" href="Portfolio.css?v=20260808-3">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script defer src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <!-- Tailwind (Play CDN) with prefix and preflight disabled to avoid conflicts -->
-    <script>
-      tailwind = { config: { prefix: 'tw-', corePlugins: { preflight: false }, theme: { extend: {} } } };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -71,9 +68,21 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"What types of projects do you build?","acceptedAnswer":{"@type":"Answer","text":"Full-stack web applications, CRM and ERP systems, SaaS dashboards, business portals, WordPress and WooCommerce websites, and Shopify stores."}},
+        {"@type":"Question","name":"Can you improve an existing website or application?","acceptedAnswer":{"@type":"Answer","text":"Yes. Existing websites and applications can be improved for performance, mobile responsiveness, SEO foundations, UI quality, integrations, security, and maintainability."}},
+        {"@type":"Question","name":"Do you provide support after launch?","acceptedAnswer":{"@type":"Answer","text":"Yes. Post-launch fixes, maintenance, updates, backups, enhancements, and ongoing technical support are available based on the project."}}
+      ]
+    }
+    </script>
 
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="ambient-3d" aria-hidden="true">
         <span class="orb orb-one"></span>
         <span class="orb orb-two"></span>
@@ -88,6 +97,7 @@
         <nav class="navbar">
             <a href="#home" style="--i:1" class="active">Home</a>
             <a href="#about" style="--i:2">About</a>
+            <a href="#services" style="--i:3">Services</a>
             <a href="#skills" style="--i:4">Skills</a>
             <a href="#experience" style="--i:5">Experience</a>
             <a href="#projects" style="--i:7">Projects</a>
@@ -96,6 +106,7 @@
         </nav>
         <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"><i class='bx bx-menu'></i></button>
     </header>
+    <main id="main-content">
     <section class="home" id="home">
         <div class="hero-main">
             <div class="home-content">
@@ -162,7 +173,39 @@
         </div>
     </section>
     
-    <!-- Services --><section id="skills" class="skills-section">
+    <section id="services" class="services-section">
+        <div class="portfolio-section-head">
+            <span class="section-pill"><i class='bx bx-briefcase-alt-2'></i> What I Do</span>
+            <h2>Services Built for <span>Growth</span></h2>
+            <p>From strategy and interface design to development, deployment, and ongoing optimization.</p>
+        </div>
+        <div class="services-grid">
+            <article class="service-card"><span class="service-number">01</span><i class='bx bx-code-block'></i><h3>Full Stack Development</h3><p>Scalable web apps, CRMs, ERPs, portals, and SaaS products with secure APIs and responsive interfaces.</p><ul><li>MERN &amp; Next.js applications</li><li>REST APIs &amp; integrations</li><li>Authentication &amp; dashboards</li></ul><a href="#contact">Start a project <i class='bx bx-right-arrow-alt'></i></a></article>
+            <article class="service-card"><span class="service-number">02</span><i class='bx bxl-wordpress'></i><h3>WordPress &amp; WooCommerce</h3><p>Fast, manageable business websites and stores engineered for search visibility and conversion.</p><ul><li>Custom themes &amp; Elementor</li><li>WooCommerce &amp; payments</li><li>Speed, security &amp; SEO</li></ul><a href="#contact">Build your website <i class='bx bx-right-arrow-alt'></i></a></article>
+            <article class="service-card"><span class="service-number">03</span><i class='bx bxl-shopify'></i><h3>Shopify Development</h3><p>High-converting ecommerce experiences with clean storefront UX and flexible merchant controls.</p><ul><li>Liquid sections &amp; themes</li><li>Apps &amp; checkout integrations</li><li>CRO and store optimization</li></ul><a href="#contact">Grow your store <i class='bx bx-right-arrow-alt'></i></a></article>
+            <article class="service-card"><span class="service-number">04</span><i class='bx bx-tachometer'></i><h3>Performance &amp; SEO</h3><p>Technical improvements that make websites faster, easier to discover, and smoother on every device.</p><ul><li>Core Web Vitals</li><li>Technical and on-page SEO</li><li>Accessibility improvements</li></ul><a href="#contact">Improve performance <i class='bx bx-right-arrow-alt'></i></a></article>
+            <article class="service-card"><span class="service-number">05</span><i class='bx bx-transfer-alt'></i><h3>API &amp; Automation</h3><p>Connect services, automate repetitive workflows, and keep business data moving reliably.</p><ul><li>Third-party API integration</li><li>Payment and CRM workflows</li><li>Notifications and reporting</li></ul><a href="#contact">Automate a workflow <i class='bx bx-right-arrow-alt'></i></a></article>
+            <article class="service-card"><span class="service-number">06</span><i class='bx bx-support'></i><h3>Support &amp; Maintenance</h3><p>Dependable improvements, monitoring, security updates, and technical support after launch.</p><ul><li>Bug fixes and enhancements</li><li>Updates and backups</li><li>Priority technical support</li></ul><a href="#contact">Get ongoing support <i class='bx bx-right-arrow-alt'></i></a></article>
+        </div>
+        <div class="availability-strip"><span><i class='bx bx-radio-circle-marked'></i> Available for freelance &amp; full-time opportunities</span><a href="#contact">Discuss your requirement <i class='bx bx-right-arrow-alt'></i></a></div>
+    </section>
+
+    <section id="process" class="process-section">
+        <div class="portfolio-section-head">
+            <span class="section-pill"><i class='bx bx-git-branch'></i> How I Work</span>
+            <h2>A Clear Process, <span>Better Results</span></h2>
+            <p>Simple communication, visible progress, and quality checks from first call to launch.</p>
+        </div>
+        <div class="process-grid">
+            <article><b>01</b><i class='bx bx-search-alt'></i><h3>Discover</h3><p>Understand goals, users, scope, timeline, and the result your business needs.</p></article>
+            <article><b>02</b><i class='bx bx-sitemap'></i><h3>Plan</h3><p>Define architecture, milestones, technology, content, and delivery priorities.</p></article>
+            <article><b>03</b><i class='bx bx-code-alt'></i><h3>Build</h3><p>Develop in focused stages with responsive UI, clean code, and regular reviews.</p></article>
+            <article><b>04</b><i class='bx bx-check-shield'></i><h3>Test</h3><p>Validate functionality, speed, security, accessibility, and device compatibility.</p></article>
+            <article><b>05</b><i class='bx bx-rocket'></i><h3>Launch</h3><p>Deploy safely, connect analytics, verify SEO essentials, and hand over clearly.</p></article>
+        </div>
+    </section>
+
+    <!-- Skills --><section id="skills" class="skills-section">
       <div class="section-header">
         <div class="skills-kicker"><span></span> My Expertise <span></span></div>
         <h2>Skills &amp; <span>Technologies</span></h2>
@@ -1291,6 +1334,25 @@
         </div>
     </section>
 
+    <section id="faq" class="faq-section">
+        <div class="portfolio-section-head">
+            <span class="section-pill"><i class='bx bx-message-rounded-dots'></i> Common Questions</span>
+            <h2>Frequently Asked <span>Questions</span></h2>
+            <p>Quick answers about project scope, timelines, communication, and support.</p>
+        </div>
+        <div class="faq-layout">
+            <div class="faq-list">
+                <details open><summary>What types of projects do you build?<i class='bx bx-plus'></i></summary><p>I build full-stack web applications, CRM and ERP systems, SaaS dashboards, business portals, WordPress and WooCommerce websites, and Shopify stores.</p></details>
+                <details><summary>How long does a typical project take?<i class='bx bx-plus'></i></summary><p>A focused business website often takes 1–3 weeks. Ecommerce and custom applications vary by features and usually begin with a milestone-based delivery plan.</p></details>
+                <details><summary>Can you improve an existing website or application?<i class='bx bx-plus'></i></summary><p>Yes. I can audit and improve performance, mobile responsiveness, SEO foundations, UI quality, integrations, security, and maintainability.</p></details>
+                <details><summary>Will my website work properly on mobile?<i class='bx bx-plus'></i></summary><p>Yes. Responsive behavior is planned and tested across common mobile, tablet, laptop, and desktop widths as part of development.</p></details>
+                <details><summary>Do you provide support after launch?<i class='bx bx-plus'></i></summary><p>Yes. I offer post-launch fixes, maintenance, updates, backups, feature enhancements, and ongoing technical support based on the project.</p></details>
+                <details><summary>How do we start?<i class='bx bx-plus'></i></summary><p>Send a short brief through the contact form or WhatsApp. I’ll review the requirement, ask any essential questions, and suggest the next practical step.</p></details>
+            </div>
+            <aside class="faq-cta"><i class='bx bx-conversation'></i><span>Still have a question?</span><h3>Let’s discuss your idea directly.</h3><p>Share the goal, timeline, and any references you already have.</p><a href="https://api.whatsapp.com/send?phone=919958052773&amp;text=Hi%20Ankush%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">Ask on WhatsApp <i class='bx bx-right-arrow-alt'></i></a></aside>
+        </div>
+    </section>
+
     <section id="contact" class="section contact">
         <div class="contact-wrap">
             <div class="contact-heading">
@@ -1315,12 +1377,13 @@
                 </article>
                 <article class="contact-form-card">
                     <div class="contact-card-title"><i class='bx bx-send'></i><div><h2>Send Me a Message</h2><p>I'll respond as soon as possible.</p></div></div>
-                    <form id="contact-form">
+                    <form id="contact-form" novalidate>
                         <label><i class='bx bx-user'></i><input type="text" name="name" placeholder="Your Name" autocomplete="name" required></label>
                         <label><i class='bx bx-envelope'></i><input type="email" name="email" placeholder="Your Email" autocomplete="email" required></label>
                         <label class="subject"><i class='bx bx-file'></i><input type="text" name="subject" placeholder="Subject" required></label>
                         <label class="message"><i class='bx bx-pencil'></i><textarea name="message" placeholder="Your Message" rows="6" required></textarea></label>
                         <button type="submit"><i class='bx bx-send'></i> Send Message</button>
+                        <p class="form-status" role="status" aria-live="polite"></p>
                     </form>
                     <div class="contact-promises"><span><i class='bx bx-shield-quarter'></i> Privacy Guaranteed</span><span><i class='bx bx-bolt-circle'></i> Quick Response</span><span><i class='bx bx-message-rounded-dots'></i> Project Discussion</span></div>
                 </article>
@@ -1333,7 +1396,16 @@
         </div>
     </section>
 
-    <script defer src="Portfolio.js?v=20260808-1"></script>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-brand"><a href="#home" class="footer-logo">AK</a><div><strong>Ankush Kumar</strong><span>Full-Stack Developer</span></div></div>
+        <nav aria-label="Footer navigation"><a href="#services">Services</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+        <p>© <span id="current-year">2026</span> Ankush Kumar. Built with performance, accessibility, and care.</p>
+    </footer>
+    <a class="floating-availability" href="#contact"><span></span> Available for work</a>
+    <button class="back-to-top" type="button" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></button>
+
+    <script defer src="Portfolio.js?v=20260808-2"></script>
     </body>
     </html>
 
