@@ -1711,6 +1711,17 @@ body{
 .projects-showcase .proj-thumb,.projects-showcase .proj-card.platform .proj-thumb{height:260px;min-height:260px;display:block;padding:0;background:#070d1b;transform:none !important;border-bottom:1px solid rgba(255,207,0,.16);overflow:hidden}
 .projects-showcase .proj-thumb img,.projects-showcase .proj-card.platform .proj-thumb img,.projects-showcase .proj-card[data-cat*="wordpress"] .proj-thumb img,.projects-showcase .proj-card[data-cat*="mern"] .proj-thumb img{width:100%;height:100%;object-fit:cover;padding:0;filter:none;transform:none !important;transition:transform .45s ease !important}
 .projects-showcase .proj-card:hover .proj-thumb img{transform:scale(1.035) !important}
+.projects-showcase .proj-thumb.fullstack-preview{
+  background-image:url('public/images/projects/fullstack-projects-sprite.png');
+  background-repeat:no-repeat;
+  background-size:auto 400%;
+  transition:filter .35s ease,transform .45s ease!important;
+}
+.projects-showcase .proj-card:hover .proj-thumb.fullstack-preview{filter:brightness(1.08) saturate(1.08)}
+.fullstack-preview.fs-01{background-position:0 0}.fullstack-preview.fs-02{background-position:33.333% 0}.fullstack-preview.fs-03{background-position:66.666% 0}.fullstack-preview.fs-04{background-position:100% 0}
+.fullstack-preview.fs-05{background-position:0 33.333%}.fullstack-preview.fs-06{background-position:33.333% 33.333%}.fullstack-preview.fs-07{background-position:66.666% 33.333%}.fullstack-preview.fs-08{background-position:100% 33.333%}
+.fullstack-preview.fs-09{background-position:0 66.666%}.fullstack-preview.fs-10{background-position:33.333% 66.666%}.fullstack-preview.fs-11{background-position:66.666% 66.666%}.fullstack-preview.fs-12{background-position:100% 66.666%}
+.fullstack-preview.fs-13{background-position:0 100%}.fullstack-preview.fs-14{background-position:33.333% 100%}.fullstack-preview.fs-15{background-position:66.666% 100%}.fullstack-preview.fs-16{background-position:100% 100%}
 .projects-showcase .proj-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1;transform:none !important}
 .projects-showcase .proj-body::before{font-size:10px;font-weight:800;letter-spacing:.5px;color:#ffcf00;text-transform:uppercase}.projects-showcase .proj-card[data-cat*="wordpress"] .proj-body::before{content:"WordPress"}.projects-showcase .proj-card[data-cat*="shopify"] .proj-body::before{content:"Shopify"}.projects-showcase .proj-card[data-cat*="mern"] .proj-body::before{content:"Full Stack"}
 .projects-showcase .proj-body h3{margin:0;color:#f4f5f7;font-size:22px;line-height:1.25}.projects-showcase .proj-body h3::after{content:"";display:block;width:38px;height:2px;margin-top:10px;background:#ffcf00}
