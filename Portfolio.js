@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var contactForm = document.querySelector('#contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', function (event) {
+    contactForm.addEventListener('submit', async function (event) {
       event.preventDefault();
       var status = contactForm.querySelector('.form-status');
       var invalid = contactForm.querySelectorAll(':invalid');
@@ -60,10 +60,21 @@ window.addEventListener('DOMContentLoaded', function () {
         return;
       }
       var data = new FormData(contactForm);
-      var subject = data.get('subject') || 'Portfolio project enquiry';
-      var body = 'Name: ' + (data.get('name') || '') + '\nEmail: ' + (data.get('email') || '') + '\n\n' + (data.get('message') || '');
-      if (status) status.textContent = 'Opening your email app with the project details…';
-      window.location.href = 'mailto:ankushkumar2811@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      var submitButton = contactForm.querySelector('button[type="submit"]');
+      var originalButton = submitButton ? submitButton.innerHTML : '';
+      if (submitButton) { submitButton.disabled = true; submitButton.innerHTML = "<i class='bx bx-loader-alt bx-spin'></i> Sending…"; }
+      if (status) status.textContent = 'Sending your message securely…';
+      try {
+        var response = await fetch(contactForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        var result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.message || 'Message could not be sent.');
+        if (status) status.textContent = result.message;
+        contactForm.reset();
+      } catch (error) {
+        if (status) status.textContent = error.message || 'Message could not be sent. Please email ak5974828@gmail.com directly.';
+      } finally {
+        if (submitButton) { submitButton.disabled = false; submitButton.innerHTML = originalButton; }
+      }
     });
     contactForm.querySelectorAll('input, textarea').forEach(function(field){
       field.addEventListener('input', function(){ var label = field.closest('label'); if (label) label.classList.remove('field-error'); });
