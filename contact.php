@@ -37,8 +37,17 @@ if (mb_strlen($name) > 100 || mb_strlen($subject) > 180 || mb_strlen($message) >
     exit;
 }
 
-$privateConfig = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'mail-config.php';
-$config = is_file($privateConfig) ? (array) require $privateConfig : [];
+$configCandidates = [
+    dirname(__DIR__) . DIRECTORY_SEPARATOR . 'mail-config.php', // Preferred: outside public_html.
+    __DIR__ . DIRECTORY_SEPARATOR . 'mail-config.php',         // Local testing/private manual upload fallback.
+];
+$config = [];
+foreach ($configCandidates as $privateConfig) {
+    if (is_file($privateConfig)) {
+        $config = (array) require $privateConfig;
+        break;
+    }
+}
 $env = static function (string $key, string $fallback = '') use ($config): string {
     $value = getenv($key);
     if ($value !== false && $value !== '') {
@@ -84,7 +93,26 @@ function smtp_send(
     string $body
 ): bool {
     $transport = $security === 'ssl' ? 'ssl://' : 'tcp://';
-    $socket = @stream_socket_client($transport . $host . ':' . $port, $errorNumber, $errorMessage, 20, STREAM_CLIENT_CONNECT);
+    $sslOptions = [
+        'verify_peer' => true,
+        'verify_peer_name' => true,
+        'peer_name' => $host,
+        'SNI_enabled' => true,
+    ];
+    $caCandidates = array_filter([
+        __DIR__ . DIRECTORY_SEPARATOR . 'cacert.pem',
+        (string) ini_get('openssl.cafile'),
+        (string) ini_get('curl.cainfo'),
+        'C:\\xampp\\apache\\bin\\curl-ca-bundle.crt',
+    ]);
+    foreach ($caCandidates as $caFile) {
+        if (is_file($caFile)) {
+            $sslOptions['cafile'] = $caFile;
+            break;
+        }
+    }
+    $context = stream_context_create(['ssl' => $sslOptions]);
+    $socket = @stream_socket_client($transport . $host . ':' . $port, $errorNumber, $errorMessage, 20, STREAM_CLIENT_CONNECT, $context);
     if (!$socket) {
         error_log('SMTP connection failed: ' . $errorNumber . ' ' . $errorMessage);
         return false;
