@@ -37,8 +37,31 @@ if (mb_strlen($name) > 100 || mb_strlen($subject) > 180 || mb_strlen($message) >
     exit;
 }
 
+$privateConfig = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'mail-config.php';
+$config = is_file($privateConfig) ? (array) require $privateConfig : [];
+$env = static function (string $key, string $fallback = '') use ($config): string {
+    $value = getenv($key);
+    if ($value !== false && $value !== '') {
+        return (string) $value;
+    }
+    return isset($config[$key]) ? (string) $config[$key] : $fallback;
+};
+
+$smtpHost = $env('SMTP_HOST', 'smtp.gmail.com');
+$smtpPort = (int) $env('SMTP_PORT', '587');
+$smtpUser = $env('SMTP_USER', 'unnatixtechnologies@gmail.com');
+$smtpPassword = $env('SMTP_PASSWORD');
+$sender = $env('SMTP_FROM_EMAIL', 'unnatixtechnologies@gmail.com');
+$senderName = $env('SMTP_FROM_NAME', 'UnnatiX Technologies');
+$smtpSecurity = strtolower($env('SMTP_SECURITY', 'starttls'));
 $recipient = 'ak5974828@gmail.com';
-$sender = 'unnatixtechnologies@gmail.com';
+
+if ($smtpPassword === '') {
+    http_response_code(503);
+    echo json_encode(['ok' => false, 'message' => 'Email service is not configured yet. Please contact me directly by email or WhatsApp.']);
+    exit;
+}
+
 $mailSubject = 'Portfolio Enquiry: ' . $subject;
 $mailBody = "New enquiry from ankushkumar.in\n\n"
     . "Name: {$name}\n"
@@ -46,15 +69,86 @@ $mailBody = "New enquiry from ankushkumar.in\n\n"
     . "Subject: {$subject}\n\n"
     . "Message:\n{$message}\n";
 
-$headers = [
-    'From: Unnatix Technologies <' . $sender . '>',
-    'Reply-To: ' . $name . ' <' . $email . '>',
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'X-Mailer: PHP/' . phpversion(),
-];
+function smtp_send(
+    string $host,
+    int $port,
+    string $security,
+    string $username,
+    string $password,
+    string $fromEmail,
+    string $fromName,
+    string $replyEmail,
+    string $replyName,
+    string $toEmail,
+    string $subject,
+    string $body
+): bool {
+    $transport = $security === 'ssl' ? 'ssl://' : 'tcp://';
+    $socket = @stream_socket_client($transport . $host . ':' . $port, $errorNumber, $errorMessage, 20, STREAM_CLIENT_CONNECT);
+    if (!$socket) {
+        error_log('SMTP connection failed: ' . $errorNumber . ' ' . $errorMessage);
+        return false;
+    }
+    stream_set_timeout($socket, 20);
 
-$sent = mail($recipient, $mailSubject, $mailBody, implode("\r\n", $headers));
+    $read = static function () use ($socket): string {
+        $response = '';
+        while (($line = fgets($socket, 515)) !== false) {
+            $response .= $line;
+            if (strlen($line) < 4 || $line[3] === ' ') break;
+        }
+        return $response;
+    };
+    $command = static function (string $value, array $expected) use ($socket, $read): bool {
+        fwrite($socket, $value . "\r\n");
+        $response = $read();
+        return in_array((int) substr($response, 0, 3), $expected, true);
+    };
+
+    if ((int) substr($read(), 0, 3) !== 220 || !$command('EHLO ankushkumar.in', [250])) {
+        fclose($socket);
+        return false;
+    }
+    if ($security === 'starttls') {
+        if (!$command('STARTTLS', [220]) || !stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) || !$command('EHLO ankushkumar.in', [250])) {
+            fclose($socket);
+            return false;
+        }
+    }
+    if (!$command('AUTH LOGIN', [334]) || !$command(base64_encode($username), [334]) || !$command(base64_encode($password), [235])) {
+        fclose($socket);
+        return false;
+    }
+    if (!$command('MAIL FROM:<' . $fromEmail . '>', [250]) || !$command('RCPT TO:<' . $toEmail . '>', [250, 251]) || !$command('DATA', [354])) {
+        fclose($socket);
+        return false;
+    }
+
+    $encodedFromName = '=?UTF-8?B?' . base64_encode($fromName) . '?=';
+    $encodedReplyName = '=?UTF-8?B?' . base64_encode($replyName) . '?=';
+    $encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $normalizedBody = str_replace(["\r\n", "\r"], "\n", $body);
+    $normalizedBody = str_replace("\n", "\r\n", $normalizedBody);
+    $normalizedBody = preg_replace('/(?m)^\./', '..', $normalizedBody) ?? $normalizedBody;
+    $headers = [
+        'Date: ' . date(DATE_RFC2822),
+        'From: ' . $encodedFromName . ' <' . $fromEmail . '>',
+        'To: <' . $toEmail . '>',
+        'Reply-To: ' . $encodedReplyName . ' <' . $replyEmail . '>',
+        'Subject: ' . $encodedSubject,
+        'Message-ID: <' . bin2hex(random_bytes(12)) . '@ankushkumar.in>',
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+    ];
+    fwrite($socket, implode("\r\n", $headers) . "\r\n\r\n" . $normalizedBody . "\r\n.\r\n");
+    $accepted = (int) substr($read(), 0, 3) === 250;
+    $command('QUIT', [221]);
+    fclose($socket);
+    return $accepted;
+}
+
+$sent = smtp_send($smtpHost, $smtpPort, $smtpSecurity, $smtpUser, $smtpPassword, $sender, $senderName, (string)$email, $name, $recipient, $mailSubject, $mailBody);
 
 if (!$sent) {
     http_response_code(500);
