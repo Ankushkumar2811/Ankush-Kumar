@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Developer Lab | Ankush Kumar</title>
+  <meta name="description" content="Play mini games and explore live frontend, JavaScript and API demos by Full Stack Developer Ankush Kumar.">
+  <meta name="theme-color" content="#050b14">
+  <link rel="canonical" href="https://ankushkumar.in/developer-lab.html">
+  <link rel="icon" href="ankush.png" type="image/png">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="developer-lab.css?v=1">
+  <script defer src="developer-lab.js?v=1"></script>
+</head>
+<body>
+  <header class="lab-nav"><a class="brand" href="index.html"><b>AK</b><span>Ankush Kumar<small>Developer Lab</small></span></a><nav><a href="#games">Games</a><a href="#demos">Live Demos</a><a href="#proof">What This Proves</a><a class="back" href="index.html">← Portfolio</a></nav></header>
+  <main>
+    <section class="lab-hero">
+      <div class="hero-copy"><span class="pill"><i class='bx bx-radio-circle-marked'></i> Interactive Skill Experience</span><h1>Don’t Just Read My Skills. <em>Play Them.</em></h1><p>A recruiter-friendly playground of mini games, browser APIs, live UI states, and practical JavaScript interactions—all built without a framework.</p><div class="hero-actions"><a href="#games">Start Playing <i class='bx bx-joystick'></i></a><a href="#demos" class="ghost">Explore Live Demos <i class='bx bx-right-arrow-alt'></i></a></div><div class="tech-line"><span>JavaScript</span><span>Canvas</span><span>DOM</span><span>REST API</span><span>Responsive UI</span></div></div>
+      <div class="hero-terminal"><div class="terminal-top"><i></i><i></i><i></i><span>skill-check.js</span></div><pre><code><b>const</b> developer = {
+  name: <i>"Ankush Kumar"</i>,
+  role: <i>"Full Stack Developer"</i>,
+  builds: [<i>"web apps"</i>, <i>"games"</i>, <i>"APIs"</i>],
+  quality: <i>"human reviewed"</i>
+};
+
+<b>run</b>(developer).then(result =&gt; {
+  console.log(<i>"Ready to build ✓"</i>);
+});</code></pre><div class="terminal-status"><span></span> All systems operational</div></div>
+    </section>
+
+    <section id="games" class="lab-section"><div class="section-head"><span>01 · Mini Games</span><h2>Play the <em>Logic</em></h2><p>Small interactions that demonstrate state management, timing, Canvas rendering, keyboard controls, and responsive input.</p></div>
+      <div class="game-grid">
+        <article class="lab-card snake-card"><div class="card-head"><div><span class="eyebrow">Canvas + Game Loop</span><h3>Neon Snake</h3></div><div class="live-dot">LIVE</div></div><canvas id="snake-canvas" width="480" height="280" aria-label="Playable snake game"></canvas><div class="game-controls"><p>Score <strong id="snake-score">0</strong></p><div><button data-direction="left" aria-label="Move left">←</button><button data-direction="up" aria-label="Move up">↑</button><button data-direction="down" aria-label="Move down">↓</button><button data-direction="right" aria-label="Move right">→</button></div><button id="snake-restart" class="action">Restart</button></div></article>
+        <article class="lab-card memory-card"><div class="card-head"><div><span class="eyebrow">State + DOM</span><h3>Stack Match</h3></div><div class="live-dot">PLAY</div></div><p class="game-intro">Match the technology pairs in as few moves as possible.</p><div id="memory-board" class="memory-board" aria-label="Technology memory matching game"></div><div class="game-controls"><p>Moves <strong id="memory-moves">0</strong></p><p>Pairs <strong id="memory-pairs">0/4</strong></p><button id="memory-restart" class="action">Shuffle</button></div></article>
+        <article class="lab-card reaction-card"><div class="card-head"><div><span class="eyebrow">Events + Precision Timing</span><h3>Reaction Test</h3></div><div class="live-dot">TEST</div></div><button id="reaction-zone" class="reaction-zone"><span>Click to start</span><small>Wait for gold, then click fast.</small></button><div class="reaction-stats"><p>Latest<strong id="reaction-latest">—</strong></p><p>Best<strong id="reaction-best">—</strong></p><p>Attempts<strong id="reaction-count">0</strong></p></div></article>
+      </div>
+    </section>
+
+    <section id="demos" class="lab-section demos"><div class="section-head"><span>02 · Live Demo Panels</span><h2>Inspect the <em>Build</em></h2><p>Editable controls and real browser behavior—change values, run functions, filter data, and inspect responses.</p></div>
+      <div class="demo-grid">
+        <article class="demo-panel"><div class="panel-title"><i class='bx bx-slider-alt'></i><div><span>UI Playground</span><h3>Live Component Studio</h3></div></div><div class="studio"><div class="studio-controls"><label>Accent color<input id="studio-color" type="color" value="#ffcf00"></label><label>Border radius<input id="studio-radius" type="range" min="0" max="32" value="14"></label><label>Heading<input id="studio-title" type="text" value="Launch faster."></label><label>Theme<select id="studio-theme"><option value="dark">Dark</option><option value="light">Light</option><option value="glass">Glass</option></select></label></div><div id="studio-preview" class="studio-preview"><span>PRODUCT UPDATE</span><h4>Launch faster.</h4><p>A live component driven by CSS variables and JavaScript state.</p><button>Get Started →</button></div></div></article>
+        <article class="demo-panel"><div class="panel-title"><i class='bx bx-code-alt'></i><div><span>JavaScript Runner</span><h3>Transform Live Data</h3></div></div><div class="code-box"><div class="code-tabs"><span>transform.js</span><button id="run-code"><i class='bx bx-play'></i> Run</button></div><textarea id="code-input" spellcheck="false">const products = [12, 25, 8, 42, 19];
+return products.filter(n => n >= 15).map(n => n * 2);</textarea><div class="console"><span>Console output</span><code id="code-output">Click Run to execute…</code></div></div></article>
+        <article class="demo-panel"><div class="panel-title"><i class='bx bx-data'></i><div><span>Data + Search</span><h3>Instant Project Filter</h3></div></div><div class="filter-bar"><input id="project-search" type="search" placeholder="Search projects or technology…"><span id="project-count">6 results</span></div><div id="project-list" class="project-list"></div></article>
+        <article class="demo-panel api-panel"><div class="panel-title"><i class='bx bx-transfer'></i><div><span>Async JavaScript</span><h3>REST API Console</h3></div></div><div class="api-toolbar"><select id="api-resource"><option value="users/1">GET /users/1</option><option value="todos/1">GET /todos/1</option><option value="posts/1">GET /posts/1</option></select><button id="api-send">Send Request</button></div><div class="api-meta"><span>Status <b id="api-status">Ready</b></span><span>Time <b id="api-time">—</b></span></div><pre id="api-output">Select an endpoint and send a request.</pre></article>
+      </div>
+    </section>
+
+    <section id="proof" class="proof"><div class="section-head"><span>03 · Engineering Proof</span><h2>What You’re <em>Testing</em></h2></div><div class="proof-grid"><article><i class='bx bx-devices'></i><h3>Responsive Engineering</h3><p>Every interaction adapts to touch, keyboard, mobile, tablet, and desktop layouts.</p></article><article><i class='bx bx-brain'></i><h3>Logic &amp; State</h3><p>Game loops, timers, state transitions, filtering, validation, and event-driven behavior.</p></article><article><i class='bx bx-plug'></i><h3>API Integration</h3><p>Async requests, loading states, errors, response timing, and structured JSON rendering.</p></article><article><i class='bx bx-check-shield'></i><h3>Production Thinking</h3><p>Accessible controls, reduced-motion support, safe execution limits, and clear feedback.</p></article></div><div class="proof-cta"><div><span>Seen enough?</span><h3>Let’s build something people enjoy using.</h3></div><a href="index.html#contact">Start a Conversation <i class='bx bx-right-arrow-alt'></i></a></div></section>
+  </main>
+  <footer><span>AK Developer Lab</span><p>Designed and developed by Ankush Kumar.</p><a href="index.html">Back to Portfolio</a></footer>
+</body>
+</html>
