@@ -91,6 +91,36 @@ window.addEventListener('DOMContentLoaded', function () {
     backToTop.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
   }
 
+  var labOrb = document.querySelector('.floating-lab-orb');
+  if (labOrb) {
+    var orbX = 24;
+    var orbY = Math.max(90, window.innerHeight * 0.34);
+    var orbVX = window.innerWidth < 720 ? 1.05 : 1.35;
+    var orbVY = window.innerWidth < 720 ? 0.85 : 1.08;
+    var orbPaused = false;
+    var animateLabOrb = function () {
+      if (!orbPaused) {
+        var orbWidth = labOrb.offsetWidth;
+        var orbHeight = labOrb.offsetHeight;
+        var maxX = Math.max(0, window.innerWidth - orbWidth - 8);
+        var maxY = Math.max(72, window.innerHeight - orbHeight - 8);
+        orbX += orbVX;
+        orbY += orbVY;
+        if (orbX <= 8 || orbX >= maxX) { orbVX *= -1; orbX = Math.min(maxX, Math.max(8, orbX)); }
+        if (orbY <= 72 || orbY >= maxY) { orbVY *= -1; orbY = Math.min(maxY, Math.max(72, orbY)); }
+        labOrb.style.transform = 'translate3d(' + orbX.toFixed(1) + 'px,' + orbY.toFixed(1) + 'px,0)';
+      }
+      window.requestAnimationFrame(animateLabOrb);
+    };
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      labOrb.style.transform = 'translate3d(16px,calc(100vh - 100px),0)';
+    } else {
+      labOrb.addEventListener('pointerenter', function(){ orbPaused = true; });
+      labOrb.addEventListener('pointerleave', function(){ orbPaused = false; });
+      animateLabOrb();
+    }
+  }
+
   var faqItems = document.querySelectorAll('.faq-list details');
   faqItems.forEach(function(item){
     item.addEventListener('toggle', function(){
